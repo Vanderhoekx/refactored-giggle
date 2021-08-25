@@ -11,11 +11,6 @@ athletes_group = athletes_df.groupby(['NOC', 'Discipline']).count().reset_index(
 sports_group = athletes_df.groupby('Discipline').count().reset_index()
 medals_group = medals_df.groupby(['Team/NOC', 'Gold', 'Silver', 'Bronze', 'Total']).count().reset_index()
 
-medals_average = {}
-for country, total in zip(medals_group['Team/NOC'], medals_group['Total']):
-    medals_average.setdefault(country, total // sum(medals_group['Total']))
-
-print(medals_average)
 average_medals_won = sum(medals_group['Total']) // len(medals_group['Team/NOC'])
 average_athletes_sport = sum(sports_group['Name']) // len(sports_group['Discipline'])
 
